@@ -1,41 +1,24 @@
 <!DOCTYPE html>
 <head>
-  <script src="test.js"></script>
+  <script src="DSP.js"></script>
 </head>
 <html>
   <body>
-    <button id="button">Start</button>
-    <button id="gate">Gate</button>
     <script type="module">
-      let noise_dsp = null;
-
-      async function startAudio() {
+      async function initAudio() {
         const audioContext = new AudioContext();
 
-        var pluginURL = ".";
-        var plugin = new Fausttest(audioContext, pluginURL);
-        plugin.load().then((node) => {
-          noise_dsp = node;
-          console.log(noise_dsp.getJSON());
-          // Print path to be used with 'setParamValue'
-          console.log(noise_dsp.getParams());
-          // Connect it to output as a regular WebAudio node
-          noise_dsp.connect(audioContext.destination);
+        const dsp = await new FaustDSP(audioContext, ".").load();
+
+        dsp.connect(audioContext.destination);
+
+        document.addEventListener("mousemove", (event) => {
+          dsp.setParamValue("/DSP/mouseX", event.clientX / window.innerWidth);
+          dsp.setParamValue("/DSP/mouseY", event.clientY / window.innerHeight);
         });
       }
 
-      function gate() {
-        noise_dsp.setParamValue("/test/gate", 1);
-      }
-
-      async function init() {
-        const button = document.getElementById("button");
-        button.addEventListener("click", startAudio);
-
-        document.getElementById("gate").addEventListener("click", gate);
-      }
-
-      init();
+      document.addEventListener("click", initAudio);
     </script>
   </body>
 </html>

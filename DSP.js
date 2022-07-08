@@ -1,13 +1,13 @@
 
 /*
-Code generated with Faust version 2.37.3
-Compilation options: -lang wasm-ib -es 1 -single -ftz 2
+Code generated with Faust version 2.40.0
+Compilation options: -lang wasm-ib -cn DSP -es 1 -mcd 16 -single -ftz 2 
 */
 
-function getJSONtest() {
-	return '{"name": "test","filename": "test.dsp","version": "2.37.3","compile_options": "-lang wasm-ib -es 1 -single -ftz 2","library_list": ["/usr/local/Cellar/faust/2.37.3/share/faust/stdfaust.lib","/usr/local/Cellar/faust/2.37.3/share/faust/oscillators.lib","/usr/local/Cellar/faust/2.37.3/share/faust/platform.lib","/usr/local/Cellar/faust/2.37.3/share/faust/maths.lib","/usr/local/Cellar/faust/2.37.3/share/faust/basics.lib"],"include_pathnames": ["/usr/local/Cellar/faust/2.37.3/share/faust","/usr/local/share/faust","/usr/share/faust",".","/Users/Flo/Projects/faust-wasm"],"size": 262180,"inputs": 0,"outputs": 1,"meta": [ { "basics.lib/name": "Faust Basic Element Library" },{ "basics.lib/version": "0.2" },{ "compile_options": "-lang wasm-ib -es 1 -single -ftz 2" },{ "filename": "test.dsp" },{ "maths.lib/author": "GRAME" },{ "maths.lib/copyright": "GRAME" },{ "maths.lib/license": "LGPL with exception" },{ "maths.lib/name": "Faust Math Library" },{ "maths.lib/version": "2.5" },{ "name": "test" },{ "oscillators.lib/name": "Faust Oscillator Library" },{ "oscillators.lib/version": "0.1" },{ "platform.lib/name": "Generic Platform Library" },{ "platform.lib/version": "0.2" }],"ui": [ {"type": "vgroup","label": "test","items": [ {"type": "button","label": "gate","address": "/test/gate","index": 262144}]}]}';
+function getJSONDSP() {
+	return '{"name": "DSP","filename": "DSP.dsp","version": "2.40.0","compile_options": "-lang wasm-ib -cn DSP -es 1 -mcd 16 -single -ftz 2","library_list": ["/usr/local/Cellar/faust/2.40.0/share/faust/stdfaust.lib","/usr/local/Cellar/faust/2.40.0/share/faust/oscillators.lib","/usr/local/Cellar/faust/2.40.0/share/faust/platform.lib","/usr/local/Cellar/faust/2.40.0/share/faust/maths.lib","/usr/local/Cellar/faust/2.40.0/share/faust/basics.lib"],"include_pathnames": ["/usr/local/Cellar/faust/2.40.0/share/faust","/usr/local/share/faust","/usr/share/faust",".","/Users/Flo/Projects/faust-wasm-three"],"size": 262192,"inputs": 0,"outputs": 2,"meta": [ { "basics.lib/name": "Faust Basic Element Library" },{ "basics.lib/version": "0.5" },{ "compile_options": "-lang wasm-ib -cn DSP -es 1 -mcd 16 -single -ftz 2" },{ "filename": "DSP.dsp" },{ "maths.lib/author": "GRAME" },{ "maths.lib/copyright": "GRAME" },{ "maths.lib/license": "LGPL with exception" },{ "maths.lib/name": "Faust Math Library" },{ "maths.lib/version": "2.5" },{ "name": "DSP" },{ "oscillators.lib/name": "Faust Oscillator Library" },{ "oscillators.lib/version": "0.3" },{ "platform.lib/name": "Generic Platform Library" },{ "platform.lib/version": "0.2" }],"ui": [ {"type": "vgroup","label": "DSP","items": [ {"type": "hslider","label": "mouseX","address": "/DSP/mouseX","index": 262152,"init": 0,"min": 0,"max": 1,"step": 0.0001},{"type": "hslider","label": "mouseY","address": "/DSP/mouseY","index": 262164,"init": 0,"min": 0,"max": 1,"step": 0.0001}]}]}';
 }
-function getBase64Codetest() { return "AGFzbQEAAAAB0ICAgAAPYAJ/fwBgBH9/f38AYAF/AX9gAX8Bf2ACf38BfWABfwF/YAJ/fwBgAX8AYAJ/fwBgAn9/AGABfwBgAn9/AX9gAn9/AX9gA39/fQBgAX0BfQKNgICAAAEDZW52BV9zaW5mAA4Dj4CAgAAOAAECAwQFBgcICQoLDA0FjICAgAABAYiAgIAA8IeAgAAHuoGAgAAMB2NvbXB1dGUAAgxnZXROdW1JbnB1dHMAAw1nZXROdW1PdXRwdXRzAAQNZ2V0UGFyYW1WYWx1ZQAFDWdldFNhbXBsZVJhdGUABgRpbml0AAcNaW5zdGFuY2VDbGVhcgAIEWluc3RhbmNlQ29uc3RhbnRzAAkMaW5zdGFuY2VJbml0AAoaaW5zdGFuY2VSZXNldFVzZXJJbnRlcmZhY2UACw1zZXRQYXJhbVZhbHVlAA4GbWVtb3J5AgAKuoWAgAAO34GAgAABA39BACEEQQAhAkEAIQNBACECA0ACQEGUgBAgAkECdGpBADYCACACQQFqIQIgAkECSARADAIMAQsLC0EAIQMDQAJAQZyAECADQQJ0akEANgIAIANBAWohAyADQQJIBEAMAgwBCwsLQQAhBANAAkBBAEEBNgKUgBBBAEEAKAKYgBBBACgCoIAQakGAgARvNgKcgBAgBEECdEPbD8k4QQAoApyAELKUEAA4AgBBAEEAKAKUgBA2ApiAEEEAQQAoApyAEDYCoIAQIARBAWohBCAEQYCABEgEQAwCDAELCwsLuoGAgAACAn8CfUEAIQRDAAAAACEGQQAhBUMAAAAAIQcgA0EAaigCACEEQQAqAoCAECEGQQAhBQNAAkBBACoCiIAQQQAqApCAEEEAKgKIgBBBACoCkIAQko6TkiEHQQAgB7xBgICA/AdxBH0gBwVDAAAAAAs4AoyAECAEIAVqIAZDAACAR0EAKgKMgBCUqEECdCoCAJQ4AgBBAEEAKgKMgBA4ApCAECAFQQRqIQUgBUEEIAFsSARADAIMAQsLCwuFgICAAABBAA8LhYCAgAAAQQEPC4uAgIAAACAAIAFqKgIADwuKgICAAABBACgChIAQDwuOgICAAAAgACABEAEgACABEAoLt4CAgAABAX9BACEBQQAhAQNAAkBBjIAQIAFBAnRqQwAAAAA4AgAgAUEBaiEBIAFBAkgEQAwCDAELCwsLrICAgAAAQQAgATYChIAQQQBDAADIQ0MAgDtIQwAAgD9BACgChIAQspeWlTgCiIAQC5CAgIAAACAAIAEQCSAAEAsgABAIC46AgIAAAEEAQwAAAAA4AoCAEAuQgICAAAAgACABSAR/IAEFIAALDwuQgICAAAAgACABSAR/IAAFIAELDwuMgICAAAAgACABaiACOAIACwukioCAAAEAQQALnQp7Im5hbWUiOiAidGVzdCIsImZpbGVuYW1lIjogInRlc3QuZHNwIiwidmVyc2lvbiI6ICIyLjM3LjMiLCJjb21waWxlX29wdGlvbnMiOiAiLWxhbmcgd2FzbS1pYiAtZXMgMSAtc2luZ2xlIC1mdHogMiIsImxpYnJhcnlfbGlzdCI6IFsiL3Vzci9sb2NhbC9DZWxsYXIvZmF1c3QvMi4zNy4zL3NoYXJlL2ZhdXN0L3N0ZGZhdXN0LmxpYiIsIi91c3IvbG9jYWwvQ2VsbGFyL2ZhdXN0LzIuMzcuMy9zaGFyZS9mYXVzdC9vc2NpbGxhdG9ycy5saWIiLCIvdXNyL2xvY2FsL0NlbGxhci9mYXVzdC8yLjM3LjMvc2hhcmUvZmF1c3QvcGxhdGZvcm0ubGliIiwiL3Vzci9sb2NhbC9DZWxsYXIvZmF1c3QvMi4zNy4zL3NoYXJlL2ZhdXN0L21hdGhzLmxpYiIsIi91c3IvbG9jYWwvQ2VsbGFyL2ZhdXN0LzIuMzcuMy9zaGFyZS9mYXVzdC9iYXNpY3MubGliIl0sImluY2x1ZGVfcGF0aG5hbWVzIjogWyIvdXNyL2xvY2FsL0NlbGxhci9mYXVzdC8yLjM3LjMvc2hhcmUvZmF1c3QiLCIvdXNyL2xvY2FsL3NoYXJlL2ZhdXN0IiwiL3Vzci9zaGFyZS9mYXVzdCIsIi4iLCIvVXNlcnMvRmxvL1Byb2plY3RzL2ZhdXN0LXdhc20iXSwic2l6ZSI6IDI2MjE4MCwiaW5wdXRzIjogMCwib3V0cHV0cyI6IDEsIm1ldGEiOiBbIHsgImJhc2ljcy5saWIvbmFtZSI6ICJGYXVzdCBCYXNpYyBFbGVtZW50IExpYnJhcnkiIH0seyAiYmFzaWNzLmxpYi92ZXJzaW9uIjogIjAuMiIgfSx7ICJjb21waWxlX29wdGlvbnMiOiAiLWxhbmcgd2FzbS1pYiAtZXMgMSAtc2luZ2xlIC1mdHogMiIgfSx7ICJmaWxlbmFtZSI6ICJ0ZXN0LmRzcCIgfSx7ICJtYXRocy5saWIvYXV0aG9yIjogIkdSQU1FIiB9LHsgIm1hdGhzLmxpYi9jb3B5cmlnaHQiOiAiR1JBTUUiIH0seyAibWF0aHMubGliL2xpY2Vuc2UiOiAiTEdQTCB3aXRoIGV4Y2VwdGlvbiIgfSx7ICJtYXRocy5saWIvbmFtZSI6ICJGYXVzdCBNYXRoIExpYnJhcnkiIH0seyAibWF0aHMubGliL3ZlcnNpb24iOiAiMi41IiB9LHsgIm5hbWUiOiAidGVzdCIgfSx7ICJvc2NpbGxhdG9ycy5saWIvbmFtZSI6ICJGYXVzdCBPc2NpbGxhdG9yIExpYnJhcnkiIH0seyAib3NjaWxsYXRvcnMubGliL3ZlcnNpb24iOiAiMC4xIiB9LHsgInBsYXRmb3JtLmxpYi9uYW1lIjogIkdlbmVyaWMgUGxhdGZvcm0gTGlicmFyeSIgfSx7ICJwbGF0Zm9ybS5saWIvdmVyc2lvbiI6ICIwLjIiIH1dLCJ1aSI6IFsgeyJ0eXBlIjogInZncm91cCIsImxhYmVsIjogInRlc3QiLCJpdGVtcyI6IFsgeyJ0eXBlIjogImJ1dHRvbiIsImxhYmVsIjogImdhdGUiLCJhZGRyZXNzIjogIi90ZXN0L2dhdGUiLCJpbmRleCI6IDI2MjE0NH1dfV19"; }
+function getBase64CodeDSP() { return "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ci9sb2NhbC9zaGFyZS9mYXVzdCIsIi91c3Ivc2hhcmUvZmF1c3QiLCIuIiwiL1VzZXJzL0Zsby9Qcm9qZWN0cy9mYXVzdC13YXNtLXRocmVlIl0sInNpemUiOiAyNjIxOTIsImlucHV0cyI6IDAsIm91dHB1dHMiOiAyLCJtZXRhIjogWyB7ICJiYXNpY3MubGliL25hbWUiOiAiRmF1c3QgQmFzaWMgRWxlbWVudCBMaWJyYXJ5IiB9LHsgImJhc2ljcy5saWIvdmVyc2lvbiI6ICIwLjUiIH0seyAiY29tcGlsZV9vcHRpb25zIjogIi1sYW5nIHdhc20taWIgLWNuIERTUCAtZXMgMSAtbWNkIDE2IC1zaW5nbGUgLWZ0eiAyIiB9LHsgImZpbGVuYW1lIjogIkRTUC5kc3AiIH0seyAibWF0aHMubGliL2F1dGhvciI6ICJHUkFNRSIgfSx7ICJtYXRocy5saWIvY29weXJpZ2h0IjogIkdSQU1FIiB9LHsgIm1hdGhzLmxpYi9saWNlbnNlIjogIkxHUEwgd2l0aCBleGNlcHRpb24iIH0seyAibWF0aHMubGliL25hbWUiOiAiRmF1c3QgTWF0aCBMaWJyYXJ5IiB9LHsgIm1hdGhzLmxpYi92ZXJzaW9uIjogIjIuNSIgfSx7ICJuYW1lIjogIkRTUCIgfSx7ICJvc2NpbGxhdG9ycy5saWIvbmFtZSI6ICJGYXVzdCBPc2NpbGxhdG9yIExpYnJhcnkiIH0seyAib3NjaWxsYXRvcnMubGliL3ZlcnNpb24iOiAiMC4zIiB9LHsgInBsYXRmb3JtLmxpYi9uYW1lIjogIkdlbmVyaWMgUGxhdGZvcm0gTGlicmFyeSIgfSx7ICJwbGF0Zm9ybS5saWIvdmVyc2lvbiI6ICIwLjIiIH1dLCJ1aSI6IFsgeyJ0eXBlIjogInZncm91cCIsImxhYmVsIjogIkRTUCIsIml0ZW1zIjogWyB7InR5cGUiOiAiaHNsaWRlciIsImxhYmVsIjogIm1vdXNlWCIsImFkZHJlc3MiOiAiL0RTUC9tb3VzZVgiLCJpbmRleCI6IDI2MjE1MiwiaW5pdCI6IDAsIm1pbiI6IDAsIm1heCI6IDEsInN0ZXAiOiAwLjAwMDF9LHsidHlwZSI6ICJoc2xpZGVyIiwibGFiZWwiOiAibW91c2VZIiwiYWRkcmVzcyI6ICIvRFNQL21vdXNlWSIsImluZGV4IjogMjYyMTY0LCJpbml0IjogMCwibWluIjogMCwibWF4IjogMSwic3RlcCI6IDAuMDAwMX1dfV19"; }
 
 /*
  faust2wasm: GRAME 2017-2019
@@ -19,10 +19,10 @@ if (typeof (AudioWorkletNode) === "undefined") {
     alert("AudioWorklet is not supported in this browser !")
 }
 
-class testNode extends AudioWorkletNode {
+class DSPNode extends AudioWorkletNode {
 
     constructor(context, baseURL, options) {
-        super(context, 'test', options);
+        super(context, 'DSP', options);
 
         this.baseURL = baseURL;
         this.json = options.processorOptions.json;
@@ -253,7 +253,7 @@ class testNode extends AudioWorkletNode {
         if (this.fCtrlLabel[ctrl] !== []) {
             for (var i = 0; i < this.fCtrlLabel[ctrl].length; i++) {
                 var path = this.fCtrlLabel[ctrl][i].path;
-                this.setParamValue(path, testNode.remap(value, 0, 127, this.fCtrlLabel[ctrl][i].min, this.fCtrlLabel[ctrl][i].max));
+                this.setParamValue(path, DSPNode.remap(value, 0, 127, this.fCtrlLabel[ctrl][i].min, this.fCtrlLabel[ctrl][i].max));
                 if (this.output_handler) {
                     this.output_handler(path, this.getParamValue(path));
                 }
@@ -270,7 +270,7 @@ class testNode extends AudioWorkletNode {
     pitchWheel(channel, wheel) {
         for (var i = 0; i < this.fPitchwheelLabel.length; i++) {
             var pw = this.fPitchwheelLabel[i];
-            this.setParamValue(pw.path, testNode.remap(wheel, 0, 16383, pw.min, pw.max));
+            this.setParamValue(pw.path, DSPNode.remap(wheel, 0, 16383, pw.min, pw.max));
             if (this.output_handler) {
                 this.output_handler(pw.path, this.getParamValue(pw.path));
             }
@@ -344,7 +344,7 @@ class testNode extends AudioWorkletNode {
 }
 
 // Factory class
-class test {
+class DSP {
 
     static fWorkletProcessors;
 
@@ -450,7 +450,7 @@ class test {
                 }
             };
 
-            let real_url = (this.baseURL === "") ? "test.wasm" : (this.baseURL + "/test.wasm");
+            let real_url = (this.baseURL === "") ? "DSP.wasm" : (this.baseURL + "/DSP.wasm");
             const dspFile = await fetch(real_url);
             const dspBuffer = await dspFile.arrayBuffer();
             const dspModule = await WebAssembly.compile(dspBuffer);
@@ -464,8 +464,8 @@ class test {
             if (this.fWorkletProcessors.indexOf(name) === -1) {
                 try {
                     let re = /JSON_STR/g;
-                    let testProcessorString1 = testProcessorString.replace(re, json);
-                    let real_url = window.URL.createObjectURL(new Blob([testProcessorString1], { type: 'text/javascript' }));
+                    let DSPProcessorString1 = DSPProcessorString.replace(re, json);
+                    let real_url = window.URL.createObjectURL(new Blob([DSPProcessorString1], { type: 'text/javascript' }));
                     await this.context.audioWorklet.addModule(real_url);
                     // Keep the DSP name
                     console.log("Keep the DSP name");
@@ -476,7 +476,7 @@ class test {
                     return null;
                 }
             }
-            this.node = new testNode(this.context, this.baseURL,
+            this.node = new DSPNode(this.context, this.baseURL,
                 {
                     numberOfInputs: (parseInt(json_object.inputs) > 0) ? 1 : 0,
                     numberOfOutputs: (parseInt(json_object.outputs) > 0) ? 1 : 0,
@@ -486,7 +486,7 @@ class test {
                     channelInterpretation: "speakers",
                     processorOptions: options
                 });
-            this.node.onprocessorerror = () => { console.log('An error from test-processor was detected.'); }
+            this.node.onprocessorerror = () => { console.log('An error from DSP-processor was detected.'); }
             return (this.node);
         } catch (e) {
             console.error(e);
@@ -510,13 +510,13 @@ class test {
                         // the file has been loaded, instanciate GUI
                         // and get back the HTML elem
                         // HERE WE COULD REMOVE THE HARD CODED NAME
-                        var element = createtestGUI(this.node);
+                        var element = createDSPGUI(this.node);
                         resolve(element);
                     }
                 } else {
                     // LINK EXIST, WE AT LEAST CREATED ONE INSTANCE PREVIOUSLY
                     // so we can create another instance
-                    var element = createtestGUI(this.node);
+                    var element = createDSPGUI(this.node);
                     resolve(element);
                 }
             } catch (e) {
@@ -533,25 +533,25 @@ class test {
 
 // Template string for AudioWorkletProcessor
 
-let testProcessorString = `
+let DSPProcessorString = `
 
     'use strict';
 
     // Monophonic Faust DSP
-    class testProcessor extends AudioWorkletProcessor {
+    class DSPProcessor extends AudioWorkletProcessor {
         
         // JSON parsing functions
         static parse_ui(ui, obj, callback)
         {
             for (var i = 0; i < ui.length; i++) {
-                testProcessor.parse_group(ui[i], obj, callback);
+                DSPProcessor.parse_group(ui[i], obj, callback);
             }
         }
         
         static parse_group(group, obj, callback)
         {
             if (group.items) {
-                testProcessor.parse_items(group.items, obj, callback);
+                DSPProcessor.parse_items(group.items, obj, callback);
             }
         }
         
@@ -567,7 +567,7 @@ let testProcessorString = `
             if (item.type === "vgroup"
                 || item.type === "hgroup"
                 || item.type === "tgroup") {
-                testProcessor.parse_items(item.items, obj, callback);
+                DSPProcessor.parse_items(item.items, obj, callback);
             } else if (item.type === "hbargraph"
                        || item.type === "vbargraph") {
                 // Nothing
@@ -588,7 +588,7 @@ let testProcessorString = `
             if (item.type === "vgroup"
                 || item.type === "hgroup"
                 || item.type === "tgroup") {
-                testProcessor.parse_items(item.items, obj, callback);
+                DSPProcessor.parse_items(item.items, obj, callback);
             } else if (item.type === "hbargraph"
                        || item.type === "vbargraph") {
                 // Keep bargraph adresses
@@ -609,7 +609,7 @@ let testProcessorString = `
         {
             // Analyse JSON to generate AudioParam parameters
             var params = [];
-            testProcessor.parse_ui(JSON.parse(\`JSON_STR\`).ui, params, testProcessor.parse_item1);
+            DSPProcessor.parse_ui(JSON.parse(\`JSON_STR\`).ui, params, DSPProcessor.parse_item1);
             return params;
         }
        
@@ -684,7 +684,7 @@ let testProcessorString = `
                     }
             };
             
-            this.test_instance = new WebAssembly.Instance(options.processorOptions.wasm_module, importObject);
+            this.DSP_instance = new WebAssembly.Instance(options.processorOptions.wasm_module, importObject);
             this.json_object = JSON.parse(options.processorOptions.json);
          
             this.output_handler = function(path, value) { this.port.postMessage({ path: path, value: value }); };
@@ -703,8 +703,8 @@ let testProcessorString = `
             this.sample_size = 4;
             this.integer_size = 4;
             
-            this.factory = this.test_instance.exports;
-            this.HEAP = this.test_instance.exports.memory.buffer;
+            this.factory = this.DSP_instance.exports;
+            this.HEAP = this.DSP_instance.exports.memory.buffer;
             this.HEAP32 = new Int32Array(this.HEAP);
             this.HEAPF32 = new Float32Array(this.HEAP);
 
@@ -780,7 +780,7 @@ let testProcessorString = `
                 }
                 
                 // Parse UI
-                testProcessor.parse_ui(this.json_object.ui, this, testProcessor.parse_item2);
+                DSPProcessor.parse_ui(this.json_object.ui, this, DSPProcessor.parse_item2);
                 
                 // Init DSP
                 this.factory.init(this.dsp, sampleRate); // 'sampleRate' is defined in AudioWorkletGlobalScope  
@@ -869,19 +869,19 @@ let testProcessorString = `
     // Globals
     const NUM_FRAMES = 128;
     try {
-        registerProcessor('test', testProcessor);
+        registerProcessor('DSP', DSPProcessor);
     } catch (error) {
         console.warn(error);
     }
 `;
 
-const dspName = "test";
+const dspName = "DSP";
 
 // WAP factory or npm package module
 if (typeof module === "undefined") {
-    window.test = test;
-    window.Fausttest = test;
-    window[dspName] = test;
+    window.DSP = DSP;
+    window.FaustDSP = DSP;
+    window[dspName] = DSP;
 } else {
-    module.exports = { test };
+    module.exports = { DSP };
 }
