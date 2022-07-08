@@ -1,8 +1,5 @@
 import * as THREE from "three";
 
-const loader = new THREE.FileLoader();
-loader.load("shader.frag", initThree);
-
 function initThree(fragmentShader) {
   const scene = new THREE.Scene();
 
@@ -13,18 +10,29 @@ function initThree(fragmentShader) {
   renderer.setSize(window.innerWidth, window.innerHeight);
   document.body.appendChild(renderer.domElement);
 
+  const uniforms = {
+    resolution: {
+      value: new THREE.Vector2(window.innerWidth, window.innerHeight),
+    },
+  };
+
   const geometry = new THREE.PlaneBufferGeometry(2, 2);
   const material = new THREE.ShaderMaterial({
-    uniforms: {
-      resolution: {
-        value: new THREE.Vector2(window.innerWidth, window.innerHeight),
-      },
-    },
+    uniforms,
     fragmentShader,
   });
 
   const background = new THREE.Mesh(geometry, material);
   scene.add(background);
+
+  window.addEventListener(
+    "resize",
+    () => {
+      uniforms.resolution.value.x = window.innerWidth;
+      uniforms.resolution.value.y = window.innerHeight;
+    },
+    false
+  );
 
   function render() {
     requestAnimationFrame(render);
@@ -33,3 +41,6 @@ function initThree(fragmentShader) {
 
   render();
 }
+
+const loader = new THREE.FileLoader();
+loader.load("shader.frag", initThree);
