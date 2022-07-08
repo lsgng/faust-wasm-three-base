@@ -1,24 +1,10 @@
 <!DOCTYPE html>
 <head>
   <script src="DSP.js"></script>
+  <script src="audio.js"></script>
 </head>
 <html>
   <body>
-    <script type="module">
-      async function initAudio() {
-        const audioContext = new AudioContext();
-
-        const dsp = await new FaustDSP(audioContext, ".").load();
-
-        dsp.connect(audioContext.destination);
-
-        document.addEventListener("mousemove", (event) => {
-          dsp.setParamValue("/DSP/mouseX", event.clientX / window.innerWidth);
-          dsp.setParamValue("/DSP/mouseY", event.clientY / window.innerHeight);
-        });
-      }
-
-      document.addEventListener("click", initAudio);
-    </script>
+    <script type="module"></script>
   </body>
 </html>
