@@ -14,6 +14,9 @@ function initThree(fragmentShader) {
     resolution: {
       value: new THREE.Vector2(window.innerWidth, window.innerHeight),
     },
+    mouse: {
+      value: new THREE.Vector2(0.0, 0.0),
+    },
   };
 
   const geometry = new THREE.PlaneBufferGeometry(2, 2);
@@ -24,6 +27,15 @@ function initThree(fragmentShader) {
 
   const background = new THREE.Mesh(geometry, material);
   scene.add(background);
+
+  window.addEventListener(
+    "mousemove",
+    (event) => {
+      uniforms.mouse.value.x = event.clientX / window.innerWidth;
+      uniforms.mouse.value.y = event.clientY / window.innerHeight;
+    },
+    false
+  );
 
   window.addEventListener(
     "resize",
