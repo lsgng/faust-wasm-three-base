@@ -17,6 +17,7 @@ async function initThree() {
     resolution: {
       value: new THREE.Vector2(window.innerWidth, window.innerHeight),
     },
+    time: { value: Date.now() },
     mouse: {
       value: new THREE.Vector2(0.0, 0.0),
     },
@@ -49,9 +50,13 @@ async function initThree() {
     false
   );
 
+  const clock = new THREE.Clock();
+
   function render() {
-    requestAnimationFrame(render);
+    uniforms.time.value = clock.getElapsedTime();
+
     renderer.render(scene, camera);
+    requestAnimationFrame(render);
   }
 
   render();
