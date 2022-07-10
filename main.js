@@ -1,6 +1,9 @@
 import * as THREE from "https://unpkg.com/three@0.142.0/build/three.module.js";
 
-function initThree(fragmentShader) {
+async function initThree() {
+  const fragmentShaderResponse = await fetch("shader.frag");
+  const fragmentShader = await fragmentShaderResponse.text();
+
   const scene = new THREE.Scene();
 
   const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
@@ -54,5 +57,21 @@ function initThree(fragmentShader) {
   render();
 }
 
-const loader = new THREE.FileLoader();
-loader.load("shader.frag", initThree);
+async function initAudio() {
+  const audioContext = new AudioContext();
+
+  const node = await new FaustDSP(audioContext, ".").load();
+  node.connect(audioContext.destination);
+
+  document.addEventListener("mousemove", (event) => {
+    node.setParamValue("/DSP/mouseX", event.clientX / window.innerWidth);
+    node.setParamValue("/DSP/mouseY", event.clientY / window.innerHeight);
+  });
+}
+
+function init() {
+  initAudio();
+  initThree();
+}
+
+document.addEventListener("click", init);
