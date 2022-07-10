@@ -1,6 +1,6 @@
 import * as THREE from "https://unpkg.com/three@0.142.0/build/three.module.js";
 
-const ANALYSER_FFT_SIZE = 1024;
+const ANALYSER_FFT_SIZE = 2048;
 
 async function initAudio() {
   const audioContext = new AudioContext();
@@ -17,15 +17,24 @@ async function initAudio() {
     node.setParamValue("/DSP/mouseY", event.clientY / window.innerHeight);
   });
 
-  return analyser;
+  return { audioContext, analyser };
 }
 
-async function initThree(analyser) {
+async function initThree(audioContext, analyser) {
+  const clock = new THREE.Clock();
+
   const fragmentShaderResponse = await fetch("shader.frag");
   const fragmentShader = await fragmentShaderResponse.text();
 
-  const clock = new THREE.Clock();
   const frequenyData = new Uint8Array(analyser.frequencyBinCount);
+
+  function getAmplitude(frequency) {
+    analyser.getByteFrequencyData(frequenyData);
+    const hertzPerStep =
+      audioContext.sampleRate / 2 / analyser.frequencyBinCount;
+    const index = Math.floor(frequency / hertzPerStep);
+    return frequenyData[index] / 255;
+  }
 
   const scene = new THREE.Scene();
 
@@ -76,10 +85,7 @@ async function initThree(analyser) {
 
   function render() {
     uniforms.time.value = clock.getElapsedTime();
-
-    analyser.getByteFrequencyData(frequenyData);
-    const amplitude = frequenyData[20] / 255;
-    uniforms.amplitude.value = amplitude;
+    uniforms.amplitude.value = getAmplitude(1000);
 
     renderer.render(scene, camera);
     requestAnimationFrame(render);
@@ -89,8 +95,8 @@ async function initThree(analyser) {
 }
 
 async function init() {
-  const analyser = await initAudio();
-  initThree(analyser);
+  const { audioContext, analyser } = await initAudio();
+  initThree(audioContext, analyser);
 }
 
 init();
